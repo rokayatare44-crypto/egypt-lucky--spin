@@ -63,7 +63,9 @@ h1 {
   color: #5e666b;
 }
 
-/* FORM */
+/* =========================
+   FORM
+========================= */
 
 .form-card {
   width: 100%;
@@ -114,6 +116,10 @@ h1 {
   margin-top: 5px;
 }
 
+.continue-button:hover {
+  transform: translateY(-1px);
+}
+
 .error-message {
   color: #c0392b;
   font-size: 13px;
@@ -121,7 +127,9 @@ h1 {
   display: none;
 }
 
-/* WHEEL */
+/* =========================
+   WHEEL
+========================= */
 
 #wheelSection {
   display: none;
@@ -152,6 +160,7 @@ canvas {
   border-right: 18px solid transparent;
   border-top: 35px solid #263238;
   z-index: 5;
+  filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
 }
 
 .spin-button {
@@ -164,12 +173,18 @@ canvas {
   padding: 16px 38px;
   border-radius: 50px;
   cursor: pointer;
+  transition: 0.2s;
   box-shadow: 0 8px 18px rgba(38,50,56,0.22);
+}
+
+.spin-button:hover {
+  transform: translateY(-2px);
 }
 
 .spin-button:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+  transform: none;
 }
 
 .note {
@@ -178,7 +193,9 @@ canvas {
   color: #777;
 }
 
-/* POPUP */
+/* =========================
+   RESULT POPUP
+========================= */
 
 .overlay {
   position: fixed;
@@ -203,6 +220,19 @@ canvas {
   padding: 35px 25px;
   text-align: center;
   box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  animation: pop 0.35s ease;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .result-emoji {
@@ -213,6 +243,7 @@ canvas {
 .result-card h2 {
   font-size: 28px;
   margin-bottom: 12px;
+  color: #263238;
 }
 
 .prize {
@@ -237,6 +268,7 @@ canvas {
   margin: 15px 0 20px;
   font-weight: bold;
   letter-spacing: 1px;
+  color: #263238;
 }
 
 .whatsapp-button {
@@ -250,6 +282,10 @@ canvas {
   margin-bottom: 12px;
 }
 
+.whatsapp-button:hover {
+  transform: translateY(-1px);
+}
+
 .close-button {
   display: block;
   margin: 5px auto 0;
@@ -260,7 +296,9 @@ canvas {
   padding: 8px;
 }
 
-/* VERIFY PAGE */
+/* =========================
+   VERIFY PAGE
+========================= */
 
 #verifySection {
   display: none;
@@ -317,10 +355,6 @@ canvas {
   font-weight: bold;
 }
 
-.invalid {
-  color: #c0392b;
-}
-
 @media (max-width: 500px) {
 
   body {
@@ -351,169 +385,166 @@ canvas {
 
 <main class="container">
 
-<img
-  class="logo"
-  src="logo.png"
-  alt="Egypt Safari Tours"
->
+  <!-- LOGO -->
 
-<!-- =========================
-     NORMAL GAME
-========================= -->
+  <img
+    class="logo"
+    src="logo.png"
+    alt="Egypt Safari Tours"
+  >
 
-<div id="gameSection">
 
-  <!-- FORM -->
+  <!-- =========================
+       GAME SECTION
+  ========================= -->
 
-  <div id="formSection">
+  <div id="gameSection">
 
-    <div class="eyebrow">
-      🇪🇬 Your Egypt Adventure
-    </div>
+    <!-- FORM -->
 
-    <h1>
-      Spin to Win Your Egypt Surprise! 🎁
-    </h1>
+    <div id="formSection">
 
-    <p class="subtitle">
-      Enter your details below to unlock your Egypt Lucky Spin.
-    </p>
+      <div class="eyebrow">
+        🇪🇬 Your Egypt Adventure
+      </div>
 
-    <div class="form-card">
+      <h1>
+        Spin to Win Your Egypt Surprise! 🎁
+      </h1>
 
-      <h2>
-        Ready to Spin? 🎡
-      </h2>
-
-      <p>
-        Enter your name and phone number to continue.
+      <p class="subtitle">
+        Enter your name below to unlock your Egypt Lucky Spin.
       </p>
 
-      <form id="leadForm">
+      <div class="form-card">
 
-        <input
-          type="text"
-          id="name"
-          placeholder="Your Name"
-          required
-        >
+        <h2>
+          Ready to Spin? 🎡
+        </h2>
 
-        <input
-          type="tel"
-          id="phone"
-          placeholder="Phone Number"
-          required
-        >
+        <p>
+          Enter your name to continue.
+        </p>
 
-        <button
-          type="submit"
-          class="continue-button"
-          id="continueButton"
-        >
-          CONTINUE 🎁
-        </button>
+        <form id="leadForm">
 
-        <div
-          class="error-message"
-          id="errorMessage"
-        >
-          Please enter your name and phone number.
-        </div>
+          <input
+            type="text"
+            id="name"
+            placeholder="Your Name"
+            autocomplete="name"
+            required
+          >
 
-      </form>
+          <button
+            type="submit"
+            class="continue-button"
+            id="continueButton"
+          >
+            CONTINUE 🎁
+          </button>
+
+          <div
+            class="error-message"
+            id="errorMessage"
+          >
+            Please enter your name.
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+
+    <!-- WHEEL -->
+
+    <div id="wheelSection">
+
+      <div class="eyebrow">
+        🇪🇬 Your Egypt Adventure
+      </div>
+
+      <h1>
+        Spin to Win Your Egypt Surprise! 🎁
+      </h1>
+
+      <p class="subtitle">
+        Spin the wheel and discover your special reward for your next Egypt trip.
+      </p>
+
+      <div class="wheel-area">
+
+        <div class="pointer"></div>
+
+        <canvas
+          id="wheel"
+          width="600"
+          height="600"
+        ></canvas>
+
+      </div>
+
+      <button
+        class="spin-button"
+        id="spinButton"
+      >
+        SPIN THE WHEEL 🎡
+      </button>
+
+      <p class="note">
+        Every prize is redeemable with your next Egypt tour booking.
+      </p>
 
     </div>
 
   </div>
 
 
-  <!-- WHEEL -->
+  <!-- =========================
+       VERIFY SECTION
+  ========================= -->
 
-  <div id="wheelSection">
+  <div id="verifySection">
 
-    <div class="eyebrow">
-      🇪🇬 Your Egypt Adventure
+    <div class="verify-card">
+
+      <div
+        class="verify-icon"
+        id="verifyIcon"
+      >
+        ✅
+      </div>
+
+      <h2 id="verifyTitle">
+        Prize Verified
+      </h2>
+
+      <p id="verifyMessage">
+        This prize has been successfully verified.
+      </p>
+
+      <div
+        class="verify-prize"
+        id="verifyPrize"
+      ></div>
+
+      <div
+        class="verify-id"
+        id="verifyId"
+      ></div>
+
+      <a
+        href="./"
+        class="back-button"
+      >
+        BACK TO EGYPT LUCKY SPIN
+      </a>
+
     </div>
-
-    <h1>
-      Spin to Win Your Egypt Surprise! 🎁
-    </h1>
-
-    <p class="subtitle">
-      Spin the wheel and discover your special reward for your next Egypt trip.
-    </p>
-
-    <div class="wheel-area">
-
-      <div class="pointer"></div>
-
-      <canvas
-        id="wheel"
-        width="600"
-        height="600"
-      ></canvas>
-
-    </div>
-
-    <button
-      class="spin-button"
-      id="spinButton"
-    >
-      SPIN THE WHEEL 🎡
-    </button>
-
-    <p class="note">
-      Every prize is redeemable with your next Egypt tour booking.
-    </p>
 
   </div>
-
-</div>
-
-
-<!-- =========================
-     VERIFY PAGE
-========================= -->
-
-<div id="verifySection">
-
-  <div class="verify-card">
-
-    <div
-      class="verify-icon"
-      id="verifyIcon"
-    >
-      ✅
-    </div>
-
-    <h2 id="verifyTitle">
-      Prize Verified
-    </h2>
-
-    <p id="verifyMessage">
-      This prize has been successfully verified.
-    </p>
-
-    <div
-      class="verify-prize"
-      id="verifyPrize"
-    ></div>
-
-    <div
-      class="verify-id"
-      id="verifyId"
-    ></div>
-
-    <a
-      href="./"
-      class="back-button"
-    >
-      BACK TO EGYPT LUCKY SPIN
-    </a>
-
-  </div>
-
-</div>
 
 </main>
 
@@ -583,7 +614,6 @@ canvas {
 ========================= */
 
 let userName = "";
-let userPhone = "";
 let winnerId = "";
 
 
@@ -599,9 +629,6 @@ const formSection =
 
 const wheelSection =
   document.getElementById("wheelSection");
-
-const continueButton =
-  document.getElementById("continueButton");
 
 const errorMessage =
   document.getElementById("errorMessage");
@@ -619,14 +646,8 @@ leadForm.addEventListener(
         .value
         .trim();
 
-    userPhone =
-      document
-        .getElementById("phone")
-        .value
-        .trim();
 
-
-    if (!userName || !userPhone) {
+    if (!userName) {
 
       errorMessage.style.display =
         "block";
@@ -639,23 +660,12 @@ leadForm.addEventListener(
       "none";
 
 
-    /*
-      Create unique Winner ID
-    */
-
-    winnerId =
-      "WIN-" +
-      crypto.randomUUID()
-        .replace(/-/g, "")
-        .substring(0, 8)
-        .toUpperCase();
-
-
     formSection.style.display =
       "none";
 
     wheelSection.style.display =
       "block";
+
 
     window.scrollTo({
       top: 0,
@@ -760,7 +770,7 @@ const prizes = [
 
 
 /* =========================
-   WHEEL
+   WHEEL SETUP
 ========================= */
 
 const canvas =
@@ -818,6 +828,7 @@ function drawWheel() {
     canvas.height
   );
 
+
   const segmentAngle =
     (Math.PI * 2) /
     prizes.length;
@@ -866,6 +877,8 @@ function drawWheel() {
 
       ctx.stroke();
 
+
+      /* TEXT */
 
       ctx.save();
 
@@ -961,7 +974,7 @@ function drawWheel() {
   );
 
 
-  /* CENTER */
+  /* CENTER CIRCLE */
 
   ctx.beginPath();
 
@@ -1113,7 +1126,9 @@ function spin() {
     drawWheel();
 
 
-    if (progress < 1) {
+    if (
+      progress < 1
+    ) {
 
       requestAnimationFrame(
         animate
@@ -1190,9 +1205,18 @@ function showResult(prize) {
     prize.emoji;
 
 
-  winnerIdElement.textContent =
-    "Winner ID: " +
-    winnerId;
+  /* CREATE WINNER ID ONLY WHEN USER WINS */
+
+  if (!prize.lose) {
+
+    winnerId =
+      "WIN-" +
+      crypto.randomUUID()
+        .replace(/-/g, "")
+        .substring(0, 8)
+        .toUpperCase();
+
+  }
 
 
   if (prize.lose) {
@@ -1203,10 +1227,10 @@ function showResult(prize) {
     resultText.innerHTML =
       "Maybe your next Egypt adventure will be your lucky one! 🇪🇬";
 
-    whatsappButton.style.display =
+    winnerIdElement.style.display =
       "none";
 
-    winnerIdElement.style.display =
+    whatsappButton.style.display =
       "none";
 
   } else {
@@ -1217,40 +1241,48 @@ function showResult(prize) {
     resultText.innerHTML =
       "Your prize has been registered successfully." +
       "<br><br>" +
-      "Click below to verify your prize.";
+      "Click below to verify and claim your prize.";
 
-    whatsappButton.style.display =
-      "inline-block";
+    winnerIdElement.textContent =
+      "Winner ID: " +
+      winnerId;
 
     winnerIdElement.style.display =
       "block";
 
+    whatsappButton.style.display =
+      "inline-block";
 
-    /*
-      Create verification link.
 
-      Everything needed is encoded
-      inside the URL.
-    */
+    /* =========================
+       CREATE VERIFICATION LINK
+    ========================= */
 
     const verificationData = {
 
-      id: winnerId,
+      id:
+        winnerId,
 
-      name: userName,
+      name:
+        userName,
 
-      prize: prize.name
+      prize:
+        prize.name
 
     };
+
+
+    const jsonData =
+      JSON.stringify(
+        verificationData
+      );
 
 
     const encodedData =
       btoa(
         unescape(
           encodeURIComponent(
-            JSON.stringify(
-              verificationData
-            )
+            jsonData
           )
         )
       );
@@ -1265,9 +1297,9 @@ function showResult(prize) {
       );
 
 
-    /*
-      WhatsApp
-    */
+    /* =========================
+       WHATSAPP
+    ========================= */
 
     const whatsappPhone =
       "201015033202";
@@ -1276,14 +1308,14 @@ function showResult(prize) {
     const whatsappMessage =
       "🎉 Congratulations!" +
       "\n\n" +
-      "You have won:" +
+      "I have won:" +
       "\n" +
       prize.name +
       "\n\n" +
       "Winner ID: " +
       winnerId +
       "\n\n" +
-      "Verify your prize here:" +
+      "Verify my prize here:" +
       "\n" +
       verificationURL;
 
@@ -1310,6 +1342,10 @@ function showResult(prize) {
 }
 
 
+/* =========================
+   CLOSE RESULT
+========================= */
+
 function closeResult() {
 
   resultOverlay.classList.remove(
@@ -1329,6 +1365,7 @@ function checkVerification() {
     new URLSearchParams(
       window.location.search
     );
+
 
   const encoded =
     params.get("verify");
@@ -1436,6 +1473,10 @@ function checkVerification() {
 }
 
 
+/* =========================
+   SAFE TEXT
+========================= */
+
 function escapeHTML(text) {
 
   const div =
@@ -1449,7 +1490,10 @@ function escapeHTML(text) {
 }
 
 
-/* CHECK URL */
+/* =========================
+   CHECK IF THIS IS
+   A VERIFICATION LINK
+========================= */
 
 checkVerification();
 
