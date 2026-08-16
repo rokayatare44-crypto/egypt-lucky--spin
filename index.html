@@ -1,1223 +1,1460 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Egypt Lucky Spin</title>
+<title>Egypt Lucky Spin</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f3eb;
-      color: #263238;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 25px 15px;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f3eb;
+  color: #263238;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 15px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 850px;
-      text-align: center;
-    }
+.container {
+  width: 100%;
+  max-width: 850px;
+  text-align: center;
+}
 
-    .logo {
-      width: 180px;
-      max-width: 55vw;
-      margin: 0 auto 20px;
-      display: block;
-      border-radius: 8px;
-    }
+.logo {
+  width: 180px;
+  max-width: 55vw;
+  margin: 0 auto 20px;
+  display: block;
+  border-radius: 8px;
+}
 
-    .eyebrow {
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #9b6b32;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #9b6b32;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
-    h1 {
-      font-size: clamp(30px, 6vw, 52px);
-      line-height: 1.05;
-      margin-bottom: 12px;
-      color: #263238;
-    }
+h1 {
+  font-size: clamp(30px, 6vw, 52px);
+  line-height: 1.05;
+  margin-bottom: 12px;
+  color: #263238;
+}
 
-    .subtitle {
-      font-size: 17px;
-      line-height: 1.5;
-      max-width: 560px;
-      margin: 0 auto 25px;
-      color: #5e666b;
-    }
+.subtitle {
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 560px;
+  margin: 0 auto 25px;
+  color: #5e666b;
+}
 
-    /* =========================
-       FORM
-       ========================= */
+/* FORM */
 
-    .form-card {
-      width: 100%;
-      max-width: 430px;
-      margin: 30px auto;
-      background: #fffdf9;
-      padding: 30px 25px;
-      border-radius: 24px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    }
+.form-card {
+  width: 100%;
+  max-width: 430px;
+  margin: 30px auto;
+  background: #fffdf9;
+  padding: 30px 25px;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
 
-    .form-card h2 {
-      font-size: 27px;
-      margin-bottom: 10px;
-    }
+.form-card h2 {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
 
-    .form-card p {
-      color: #777;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
+.form-card p {
+  color: #777;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
 
-    .form-card input {
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 12px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      font-size: 16px;
-      outline: none;
-    }
+.form-card input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
 
-    .form-card input:focus {
-      border-color: #9b6b32;
-    }
+.form-card input:focus {
+  border-color: #9b6b32;
+}
 
-    .continue-button {
-      width: 100%;
-      border: none;
-      background: #263238;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      padding: 15px;
-      border-radius: 40px;
-      cursor: pointer;
-      margin-top: 5px;
-    }
+.continue-button {
+  width: 100%;
+  border: none;
+  background: #263238;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-top: 5px;
+}
 
-    .continue-button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+.error-message {
+  color: #c0392b;
+  font-size: 13px;
+  margin-top: 12px;
+  display: none;
+}
 
-    .error-message {
-      color: #c0392b;
-      font-size: 13px;
-      margin-top: 12px;
-      display: none;
-    }
+/* WHEEL */
 
-    /* =========================
-       WHEEL
-       ========================= */
+#wheelSection {
+  display: none;
+}
 
-    #wheelSection {
-      display: none;
-    }
+.wheel-area {
+  position: relative;
+  width: min(88vw, 570px);
+  aspect-ratio: 1;
+  margin: 0 auto 25px;
+}
 
-    .wheel-area {
-      position: relative;
-      width: min(88vw, 570px);
-      aspect-ratio: 1;
-      margin: 0 auto 25px;
-    }
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.14));
+}
 
-    canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.14));
-    }
+.pointer {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 35px solid #263238;
+  z-index: 5;
+}
 
-    .pointer {
-      position: absolute;
-      top: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-top: 35px solid #263238;
-      z-index: 5;
-      filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.2));
-    }
+.spin-button {
+  border: none;
+  background: #263238;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 16px 38px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(38,50,56,0.22);
+}
 
-    .spin-button {
-      border: none;
-      background: #263238;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      padding: 16px 38px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: 0.2s;
-      box-shadow: 0 8px 18px rgba(38, 50, 56, 0.22);
-    }
+.spin-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 
-    .spin-button:hover {
-      transform: translateY(-2px);
-    }
+.note {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #777;
+}
 
-    .spin-button:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-      transform: none;
-    }
+/* POPUP */
 
-    .note {
-      margin-top: 14px;
-      font-size: 13px;
-      color: #777;
-    }
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,25,27,0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 20;
+}
 
-    /* =========================
-       RESULT POPUP
-       ========================= */
+.overlay.show {
+  display: flex;
+}
 
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(20, 25, 27, 0.72);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 20;
-    }
+.result-card {
+  width: 100%;
+  max-width: 470px;
+  background: #fffdf9;
+  border-radius: 24px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
 
-    .overlay.show {
-      display: flex;
-    }
+.result-emoji {
+  font-size: 52px;
+  margin-bottom: 10px;
+}
 
-    .result-card {
-      width: 100%;
-      max-width: 470px;
-      background: #fffdf9;
-      border-radius: 24px;
-      padding: 35px 25px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-      animation: pop 0.35s ease;
-    }
+.result-card h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
 
-    @keyframes pop {
-      from {
-        transform: scale(0.85);
-        opacity: 0;
-      }
+.prize {
+  font-size: 22px;
+  font-weight: bold;
+  color: #9b6b32;
+  margin: 15px 0;
+  line-height: 1.3;
+}
 
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+.result-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #5e666b;
+  margin-bottom: 18px;
+}
 
-    .result-emoji {
-      font-size: 52px;
-      margin-bottom: 10px;
-    }
+.winner-id {
+  background: #f1ece3;
+  padding: 12px;
+  border-radius: 12px;
+  margin: 15px 0 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
-    .result-card h2 {
-      font-size: 28px;
-      margin-bottom: 12px;
-      color: #263238;
-    }
+.whatsapp-button {
+  display: inline-block;
+  text-decoration: none;
+  background: #263238;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 40px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
 
-    .prize {
-      font-size: 22px;
-      font-weight: bold;
-      color: #9b6b32;
-      margin: 15px 0;
-      line-height: 1.3;
-    }
+.close-button {
+  display: block;
+  margin: 5px auto 0;
+  border: none;
+  background: transparent;
+  color: #777;
+  cursor: pointer;
+  padding: 8px;
+}
 
-    .result-text {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #5e666b;
-      margin-bottom: 22px;
-    }
+/* VERIFY PAGE */
 
-    .whatsapp-button {
-      display: inline-block;
-      text-decoration: none;
-      background: #263238;
-      color: white;
-      padding: 14px 24px;
-      border-radius: 40px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
+#verifySection {
+  display: none;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
 
-    .close-button {
-      display: block;
-      margin: 5px auto 0;
-      border: none;
-      background: transparent;
-      color: #777;
-      cursor: pointer;
-      padding: 8px;
-    }
+.verify-card {
+  background: #fffdf9;
+  border-radius: 24px;
+  padding: 35px 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
 
-    @media (max-width: 500px) {
+.verify-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
 
-      body {
-        padding-top: 30px;
-      }
+.verify-card h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
 
-      .logo {
-        width: 150px;
-      }
+.verify-card p {
+  color: #5e666b;
+  line-height: 1.6;
+}
 
-      .subtitle {
-        font-size: 15px;
-      }
+.verify-prize {
+  margin: 25px 0;
+  padding: 18px;
+  background: #f1ece3;
+  border-radius: 15px;
+  font-size: 21px;
+  font-weight: bold;
+  color: #9b6b32;
+}
 
-      .wheel-area {
-        width: min(92vw, 500px);
-      }
+.verify-id {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 20px;
+}
 
-      .result-card {
-        padding: 30px 20px;
-      }
-    }
-  </style>
+.back-button {
+  display: inline-block;
+  text-decoration: none;
+  background: #263238;
+  color: white;
+  padding: 13px 25px;
+  border-radius: 40px;
+  font-weight: bold;
+}
+
+.invalid {
+  color: #c0392b;
+}
+
+@media (max-width: 500px) {
+
+  body {
+    padding-top: 30px;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .wheel-area {
+    width: min(92vw, 500px);
+  }
+
+  .result-card,
+  .verify-card {
+    padding: 30px 20px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <main class="container">
+<main class="container">
 
-    <!-- LOGO -->
+<img
+  class="logo"
+  src="logo.png"
+  alt="Egypt Safari Tours"
+>
 
-    <img
-      class="logo"
-      src="logo.png"
-      alt="Egypt Safari Tours"
-    >
+<!-- =========================
+     NORMAL GAME
+========================= -->
 
-    <!-- =========================
-         USER FORM
-         ========================= -->
+<div id="gameSection">
 
-    <div id="formSection">
+  <!-- FORM -->
 
-      <div class="eyebrow">
-        🇪🇬 Your Egypt Adventure
-      </div>
+  <div id="formSection">
 
-      <h1>
-        Spin to Win Your Egypt Surprise! 🎁
-      </h1>
-
-      <p class="subtitle">
-        Enter your details below to unlock your Egypt Lucky Spin.
-      </p>
-
-      <div class="form-card">
-
-        <h2>
-          Ready to Spin? 🎡
-        </h2>
-
-        <p>
-          Enter your name and phone number to continue.
-        </p>
-
-        <form id="leadForm">
-
-          <input
-            type="text"
-            id="name"
-            placeholder="Your Name"
-            required
-          >
-
-          <input
-            type="tel"
-            id="phone"
-            placeholder="Phone Number"
-            required
-          >
-
-          <button
-            type="submit"
-            class="continue-button"
-            id="continueButton"
-          >
-            CONTINUE 🎁
-          </button>
-
-          <div
-            class="error-message"
-            id="errorMessage"
-          >
-            Please enter your name and phone number.
-          </div>
-
-        </form>
-
-      </div>
-
+    <div class="eyebrow">
+      🇪🇬 Your Egypt Adventure
     </div>
 
+    <h1>
+      Spin to Win Your Egypt Surprise! 🎁
+    </h1>
 
-    <!-- =========================
-         WHEEL SECTION
-         ========================= -->
+    <p class="subtitle">
+      Enter your details below to unlock your Egypt Lucky Spin.
+    </p>
 
-    <div id="wheelSection">
+    <div class="form-card">
 
-      <div class="eyebrow">
-        🇪🇬 Your Egypt Adventure
-      </div>
-
-      <h1>
-        Spin to Win Your Egypt Surprise! 🎁
-      </h1>
-
-      <p class="subtitle">
-        Spin the wheel and discover your special reward for your next Egypt trip.
-      </p>
-
-      <div class="wheel-area">
-
-        <div class="pointer"></div>
-
-        <canvas
-          id="wheel"
-          width="600"
-          height="600"
-        ></canvas>
-
-      </div>
-
-      <button
-        class="spin-button"
-        id="spinButton"
-      >
-        SPIN THE WHEEL 🎡
-      </button>
-
-      <p class="note">
-        Every prize is redeemable with your next Egypt tour booking.
-      </p>
-
-    </div>
-
-  </main>
-
-
-  <!-- =========================
-       RESULT POPUP
-       ========================= -->
-
-  <div
-    class="overlay"
-    id="resultOverlay"
-  >
-
-    <div class="result-card">
-
-      <div
-        class="result-emoji"
-        id="resultEmoji"
-      >
-        🎉
-      </div>
-
-      <h2 id="resultTitle">
-        Congratulations!
+      <h2>
+        Ready to Spin? 🎡
       </h2>
 
-      <div
-        class="prize"
-        id="prizeText"
-      ></div>
-
-      <p class="result-text">
-
-        You’ve unlocked a special gift for your next Egypt trip! 🇪🇬
-
-        <br><br>
-
-        Send us a screenshot of your result to claim your prize.
-
+      <p>
+        Enter your name and phone number to continue.
       </p>
 
-      <a
-        id="whatsappButton"
-        class="whatsapp-button"
-        href="#"
-        target="_blank"
-      >
-        📲 CLAIM YOUR PRIZE
-      </a>
+      <form id="leadForm">
 
-      <button
-        class="close-button"
-        onclick="closeResult()"
-      >
-        Close
-      </button>
+        <input
+          type="text"
+          id="name"
+          placeholder="Your Name"
+          required
+        >
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Phone Number"
+          required
+        >
+
+        <button
+          type="submit"
+          class="continue-button"
+          id="continueButton"
+        >
+          CONTINUE 🎁
+        </button>
+
+        <div
+          class="error-message"
+          id="errorMessage"
+        >
+          Please enter your name and phone number.
+        </div>
+
+      </form>
 
     </div>
 
   </div>
 
 
-  <script>
+  <!-- WHEEL -->
 
-    /* =========================
-       GOOGLE SHEET
-       ========================= */
+  <div id="wheelSection">
 
-    const GOOGLE_SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbxHGA0HxQsjfQMlKpyBesTf1Y-dozPDkP3VCbumks2cVPGOS7EP_Fdk1UgE8ieHNh5eiQ/exec";
+    <div class="eyebrow">
+      🇪🇬 Your Egypt Adventure
+    </div>
 
+    <h1>
+      Spin to Win Your Egypt Surprise! 🎁
+    </h1>
 
-    /* =========================
-       USER DATA
-       ========================= */
+    <p class="subtitle">
+      Spin the wheel and discover your special reward for your next Egypt trip.
+    </p>
 
-    let userName = "";
-    let userPhone = "";
+    <div class="wheel-area">
 
+      <div class="pointer"></div>
 
-    /* =========================
-       FORM
-       ========================= */
+      <canvas
+        id="wheel"
+        width="600"
+        height="600"
+      ></canvas>
 
-    const leadForm =
-      document.getElementById("leadForm");
+    </div>
 
-    const formSection =
-      document.getElementById("formSection");
+    <button
+      class="spin-button"
+      id="spinButton"
+    >
+      SPIN THE WHEEL 🎡
+    </button>
 
-    const wheelSection =
-      document.getElementById("wheelSection");
+    <p class="note">
+      Every prize is redeemable with your next Egypt tour booking.
+    </p>
 
-    const continueButton =
-      document.getElementById("continueButton");
+  </div>
 
-    const errorMessage =
-      document.getElementById("errorMessage");
+</div>
 
 
-    leadForm.addEventListener(
-      "submit",
-      async function(event) {
+<!-- =========================
+     VERIFY PAGE
+========================= -->
 
-        event.preventDefault();
+<div id="verifySection">
 
-        userName =
-          document
-            .getElementById("name")
-            .value
-            .trim();
+  <div class="verify-card">
 
-        userPhone =
-          document
-            .getElementById("phone")
-            .value
-            .trim();
+    <div
+      class="verify-icon"
+      id="verifyIcon"
+    >
+      ✅
+    </div>
 
+    <h2 id="verifyTitle">
+      Prize Verified
+    </h2>
 
-        if (!userName || !userPhone) {
+    <p id="verifyMessage">
+      This prize has been successfully verified.
+    </p>
 
-          errorMessage.style.display =
-            "block";
+    <div
+      class="verify-prize"
+      id="verifyPrize"
+    ></div>
 
-          return;
-        }
+    <div
+      class="verify-id"
+      id="verifyId"
+    ></div>
 
+    <a
+      href="./"
+      class="back-button"
+    >
+      BACK TO EGYPT LUCKY SPIN
+    </a>
 
-        errorMessage.style.display =
-          "none";
+  </div>
 
-        continueButton.disabled =
-          true;
+</div>
 
-        continueButton.textContent =
-          "PLEASE WAIT...";
+</main>
 
 
-        try {
+<!-- =========================
+     RESULT POPUP
+========================= -->
 
-          await fetch(
-            GOOGLE_SCRIPT_URL,
-            {
-              method: "POST",
+<div
+  class="overlay"
+  id="resultOverlay"
+>
 
-              mode: "no-cors",
+  <div class="result-card">
 
-              headers: {
-                "Content-Type":
-                  "text/plain;charset=utf-8"
-              },
+    <div
+      class="result-emoji"
+      id="resultEmoji"
+    >
+      🎉
+    </div>
 
-              body: JSON.stringify({
-                name: userName,
-                phone: userPhone
-              })
-            }
-          );
+    <h2 id="resultTitle">
+      Congratulations!
+    </h2>
 
-        } catch (error) {
+    <div
+      class="prize"
+      id="prizeText"
+    ></div>
 
-          console.log(
-            "Google Sheet error:",
-            error
-          );
+    <div
+      class="winner-id"
+      id="winnerId"
+    ></div>
 
-        }
+    <p
+      class="result-text"
+      id="resultText"
+    ></p>
 
+    <a
+      id="whatsappButton"
+      class="whatsapp-button"
+      href="#"
+      target="_blank"
+    >
+      📲 VERIFY & CLAIM YOUR PRIZE
+    </a>
 
-        formSection.style.display =
-          "none";
+    <button
+      class="close-button"
+      onclick="closeResult()"
+    >
+      Close
+    </button>
 
-        wheelSection.style.display =
-          "block";
+  </div>
 
-        continueButton.disabled =
-          false;
+</div>
 
-        continueButton.textContent =
-          "CONTINUE 🎁";
 
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
+<script>
 
-      }
-    );
+/* =========================
+   USER DATA
+========================= */
 
+let userName = "";
+let userPhone = "";
+let winnerId = "";
 
-    /* =========================
-       PRIZES
-       ========================= */
 
-    const prizes = [
+/* =========================
+   FORM
+========================= */
 
-      {
-        name:
-          "5% OFF Your Next Egypt Trip",
+const leadForm =
+  document.getElementById("leadForm");
 
-        emoji:
-          "🎉",
+const formSection =
+  document.getElementById("formSection");
 
-        color:
-          "#d9a441",
+const wheelSection =
+  document.getElementById("wheelSection");
 
-        message:
-          "Hi! I just won 5% OFF my next Egypt trip from the Egypt Lucky Spin! 🎉"
-      },
+const continueButton =
+  document.getElementById("continueButton");
 
-      {
-        name:
-          "FREE Egyptian Lunch",
+const errorMessage =
+  document.getElementById("errorMessage");
 
-        emoji:
-          "🍽️",
 
-        color:
-          "#c96f4a",
+leadForm.addEventListener(
+  "submit",
+  function(event) {
 
-        message:
-          "Hi! I just won a FREE Egyptian Lunch from the Egypt Lucky Spin! 🍽️"
-      },
+    event.preventDefault();
 
-      {
-        name:
-          "FREE Memphis Ticket",
+    userName =
+      document
+        .getElementById("name")
+        .value
+        .trim();
 
-        emoji:
-          "🏛️",
+    userPhone =
+      document
+        .getElementById("phone")
+        .value
+        .trim();
 
-        color:
-          "#4d7180",
 
-        message:
-          "Hi! I just won a FREE Memphis Ticket from the Egypt Lucky Spin! 🏛️"
-      },
+    if (!userName || !userPhone) {
 
-      {
-        name:
-          "FREE Camel Ride",
+      errorMessage.style.display =
+        "block";
 
-        emoji:
-          "🐪",
+      return;
+    }
 
-        color:
-          "#c49a6c",
 
-        message:
-          "Hi! I just won a FREE Camel Ride from the Egypt Lucky Spin! 🐪"
-      },
+    errorMessage.style.display =
+      "none";
 
-      {
-        name:
-          "FREE Egyptian Souvenir",
 
-        emoji:
-          "🎁",
+    /*
+      Create unique Winner ID
+    */
 
-        color:
-          "#5c9a91",
+    winnerId =
+      "WIN-" +
+      crypto.randomUUID()
+        .replace(/-/g, "")
+        .substring(0, 8)
+        .toUpperCase();
 
-        message:
-          "Hi! I just won a FREE Egyptian Souvenir from the Egypt Lucky Spin! 🎁"
-      },
 
-      {
-        name:
-          "Not This Time, Traveler! 🍀",
+    formSection.style.display =
+      "none";
 
-        emoji:
-          "🍀",
+    wheelSection.style.display =
+      "block";
 
-        color:
-          "#59616a",
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
 
-        lose:
-          true,
+  }
+);
 
-        message:
-          "Hi! I just played the Egypt Lucky Spin!"
-      }
 
-    ];
+/* =========================
+   PRIZES
+========================= */
 
+const prizes = [
 
-    /* =========================
-       WHEEL SETUP
-       ========================= */
+  {
+    name:
+      "5% OFF Your Next Egypt Trip",
 
-    const canvas =
-      document.getElementById("wheel");
+    emoji:
+      "🎉",
 
-    const ctx =
-      canvas.getContext("2d");
+    color:
+      "#d9a441",
 
-    const spinButton =
-      document.getElementById("spinButton");
+    lose:
+      false
+  },
 
-    const resultOverlay =
-      document.getElementById("resultOverlay");
+  {
+    name:
+      "FREE Egyptian Lunch",
 
-    const prizeText =
-      document.getElementById("prizeText");
+    emoji:
+      "🍽️",
 
-    const resultEmoji =
-      document.getElementById("resultEmoji");
+    color:
+      "#c96f4a",
 
-    const resultTitle =
-      document.getElementById("resultTitle");
+    lose:
+      false
+  },
 
-    const whatsappButton =
-      document.getElementById("whatsappButton");
+  {
+    name:
+      "FREE Memphis Ticket",
 
+    emoji:
+      "🏛️",
 
-    const center =
-      canvas.width / 2;
+    color:
+      "#4d7180",
 
-    const radius =
-      center - 8;
+    lose:
+      false
+  },
 
-    let currentRotation = 0;
+  {
+    name:
+      "FREE Camel Ride",
 
-    let spinning = false;
+    emoji:
+      "🐪",
 
+    color:
+      "#c49a6c",
 
-    /* =========================
-       DRAW WHEEL
-       ========================= */
+    lose:
+      false
+  },
 
-    function drawWheel() {
+  {
+    name:
+      "FREE Egyptian Souvenir",
 
-      ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
+    emoji:
+      "🎁",
 
-      const segmentAngle =
-        (Math.PI * 2) /
-        prizes.length;
+    color:
+      "#5c9a91",
 
+    lose:
+      false
+  },
 
-      prizes.forEach(
-        (prize, index) => {
+  {
+    name:
+      "Not This Time, Traveler! 🍀",
 
-          const startAngle =
-            currentRotation +
-            index * segmentAngle -
-            Math.PI / 2;
+    emoji:
+      "🍀",
 
-          const endAngle =
-            startAngle +
-            segmentAngle;
+    color:
+      "#59616a",
 
+    lose:
+      true
+  }
 
-          ctx.beginPath();
+];
 
-          ctx.moveTo(
-            center,
-            center
-          );
 
-          ctx.arc(
-            center,
-            center,
-            radius,
-            startAngle,
-            endAngle
-          );
+/* =========================
+   WHEEL
+========================= */
 
-          ctx.closePath();
+const canvas =
+  document.getElementById("wheel");
 
-          ctx.fillStyle =
-            prize.color;
+const ctx =
+  canvas.getContext("2d");
 
-          ctx.fill();
+const spinButton =
+  document.getElementById("spinButton");
 
-          ctx.strokeStyle =
-            "#fffdf9";
+const resultOverlay =
+  document.getElementById("resultOverlay");
 
-          ctx.lineWidth =
-            4;
+const prizeText =
+  document.getElementById("prizeText");
 
-          ctx.stroke();
+const resultEmoji =
+  document.getElementById("resultEmoji");
 
+const resultTitle =
+  document.getElementById("resultTitle");
 
-          /* TEXT */
+const resultText =
+  document.getElementById("resultText");
 
-          ctx.save();
+const winnerIdElement =
+  document.getElementById("winnerId");
 
-          ctx.translate(
-            center,
-            center
-          );
+const whatsappButton =
+  document.getElementById("whatsappButton");
 
-          ctx.rotate(
-            startAngle +
-            segmentAngle / 2
-          );
 
-          ctx.textAlign =
-            "right";
+const center =
+  canvas.width / 2;
 
-          ctx.fillStyle =
-            "#ffffff";
+const radius =
+  center - 8;
 
-          ctx.font =
-            "bold 18px Arial";
+let currentRotation = 0;
 
+let spinning = false;
 
-          const words =
-            prize.name.split(" ");
 
-          let line = "";
+/* =========================
+   DRAW WHEEL
+========================= */
 
-          let lines = [];
+function drawWheel() {
 
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
-          words.forEach(
-            word => {
+  const segmentAngle =
+    (Math.PI * 2) /
+    prizes.length;
 
-              const testLine =
-                line.length
-                  ? line + " " + word
-                  : word;
 
+  prizes.forEach(
+    (prize, index) => {
 
-              if (
-                ctx.measureText(
-                  testLine
-                ).width > 175
-              ) {
+      const startAngle =
+        currentRotation +
+        index * segmentAngle -
+        Math.PI / 2;
 
-                lines.push(line);
+      const endAngle =
+        startAngle +
+        segmentAngle;
 
-                line =
-                  word;
-
-              } else {
-
-                line =
-                  testLine;
-
-              }
-
-            }
-          );
-
-
-          if (line) {
-
-            lines.push(line);
-
-          }
-
-
-          lines =
-            lines.slice(0, 3);
-
-
-          lines.forEach(
-            (text, lineIndex) => {
-
-              ctx.fillText(
-                text,
-                radius - 22,
-                (
-                  lineIndex -
-                  (lines.length - 1) / 2
-                ) * 22
-              );
-
-            }
-          );
-
-
-          ctx.restore();
-
-        }
-      );
-
-
-      /* CENTER CIRCLE */
 
       ctx.beginPath();
 
-      ctx.arc(
-        center,
-        center,
-        42,
-        0,
-        Math.PI * 2
-      );
-
-      ctx.fillStyle =
-        "#263238";
-
-      ctx.fill();
-
-      ctx.strokeStyle =
-        "#ffffff";
-
-      ctx.lineWidth =
-        5;
-
-      ctx.stroke();
-
-      ctx.font =
-        "25px Arial";
-
-      ctx.textAlign =
-        "center";
-
-      ctx.textBaseline =
-        "middle";
-
-      ctx.fillText(
-        "🇪🇬",
+      ctx.moveTo(
         center,
         center
       );
 
+      ctx.arc(
+        center,
+        center,
+        radius,
+        startAngle,
+        endAngle
+      );
+
+      ctx.closePath();
+
+      ctx.fillStyle =
+        prize.color;
+
+      ctx.fill();
+
+      ctx.strokeStyle =
+        "#fffdf9";
+
+      ctx.lineWidth =
+        4;
+
+      ctx.stroke();
+
+
+      ctx.save();
+
+      ctx.translate(
+        center,
+        center
+      );
+
+      ctx.rotate(
+        startAngle +
+        segmentAngle / 2
+      );
+
+      ctx.textAlign =
+        "right";
+
+      ctx.fillStyle =
+        "#ffffff";
+
+      ctx.font =
+        "bold 18px Arial";
+
+
+      const words =
+        prize.name.split(" ");
+
+      let line = "";
+
+      let lines = [];
+
+
+      words.forEach(
+        word => {
+
+          const testLine =
+            line.length
+              ? line + " " + word
+              : word;
+
+
+          if (
+            ctx.measureText(
+              testLine
+            ).width > 175
+          ) {
+
+            lines.push(line);
+
+            line =
+              word;
+
+          } else {
+
+            line =
+              testLine;
+
+          }
+
+        }
+      );
+
+
+      if (line) {
+
+        lines.push(line);
+
+      }
+
+
+      lines =
+        lines.slice(0, 3);
+
+
+      lines.forEach(
+        (text, lineIndex) => {
+
+          ctx.fillText(
+            text,
+            radius - 22,
+            (
+              lineIndex -
+              (lines.length - 1) / 2
+            ) * 22
+          );
+
+        }
+      );
+
+
+      ctx.restore();
+
     }
+  );
+
+
+  /* CENTER */
+
+  ctx.beginPath();
+
+  ctx.arc(
+    center,
+    center,
+    42,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fillStyle =
+    "#263238";
+
+  ctx.fill();
+
+  ctx.strokeStyle =
+    "#ffffff";
+
+  ctx.lineWidth =
+    5;
+
+  ctx.stroke();
+
+  ctx.font =
+    "25px Arial";
+
+  ctx.textAlign =
+    "center";
+
+  ctx.textBaseline =
+    "middle";
+
+  ctx.fillText(
+    "🇪🇬",
+    center,
+    center
+  );
+
+}
+
+
+drawWheel();
+
+
+/* =========================
+   SPIN
+========================= */
+
+spinButton.addEventListener(
+  "click",
+  spin
+);
+
+
+function spin() {
+
+  if (spinning)
+    return;
+
+
+  spinning = true;
+
+  spinButton.disabled =
+    true;
+
+
+  const winningIndex =
+    Math.floor(
+      Math.random() *
+      prizes.length
+    );
+
+
+  const segmentAngle =
+    (Math.PI * 2) /
+    prizes.length;
+
+
+  const targetAngle =
+    (Math.PI * 2) -
+    (
+      winningIndex *
+      segmentAngle +
+      segmentAngle / 2
+    );
+
+
+  const extraSpins =
+    6 +
+    Math.floor(
+      Math.random() * 3
+    );
+
+
+  const startRotation =
+    currentRotation;
+
+
+  const finalRotation =
+    startRotation +
+    extraSpins *
+    Math.PI *
+    2 +
+    normalizeAngle(
+      targetAngle -
+      startRotation
+    );
+
+
+  const duration =
+    5000;
+
+  const startTime =
+    performance.now();
+
+
+  function animate(now) {
+
+    const elapsed =
+      now -
+      startTime;
+
+
+    const progress =
+      Math.min(
+        elapsed / duration,
+        1
+      );
+
+
+    const eased =
+      1 -
+      Math.pow(
+        1 - progress,
+        4
+      );
+
+
+    currentRotation =
+      startRotation +
+      (
+        finalRotation -
+        startRotation
+      ) *
+      eased;
 
 
     drawWheel();
 
 
-    /* =========================
-       SPIN
-       ========================= */
-
-    spinButton.addEventListener(
-      "click",
-      spin
-    );
-
-
-    function spin() {
-
-      if (spinning)
-        return;
-
-
-      spinning = true;
-
-      spinButton.disabled =
-        true;
-
-
-      const winningIndex =
-        Math.floor(
-          Math.random() *
-          prizes.length
-        );
-
-
-      const segmentAngle =
-        (Math.PI * 2) /
-        prizes.length;
-
-
-      const targetAngle =
-        (Math.PI * 2) -
-        (
-          winningIndex *
-          segmentAngle +
-          segmentAngle / 2
-        );
-
-
-      const extraSpins =
-        6 +
-        Math.floor(
-          Math.random() * 3
-        );
-
-
-      const startRotation =
-        currentRotation;
-
-
-      const finalRotation =
-        startRotation +
-        extraSpins *
-        Math.PI *
-        2 +
-        normalizeAngle(
-          targetAngle -
-          startRotation
-        );
-
-
-      const duration =
-        5000;
-
-      const startTime =
-        performance.now();
-
-
-      function animate(now) {
-
-        const elapsed =
-          now -
-          startTime;
-
-
-        const progress =
-          Math.min(
-            elapsed / duration,
-            1
-          );
-
-
-        const eased =
-          1 -
-          Math.pow(
-            1 - progress,
-            4
-          );
-
-
-        currentRotation =
-          startRotation +
-          (
-            finalRotation -
-            startRotation
-          ) *
-          eased;
-
-
-        drawWheel();
-
-
-        if (
-          progress < 1
-        ) {
-
-          requestAnimationFrame(
-            animate
-          );
-
-        } else {
-
-          currentRotation =
-            finalRotation %
-            (Math.PI * 2);
-
-          drawWheel();
-
-
-          setTimeout(
-            () => {
-
-              showResult(
-                prizes[winningIndex]
-              );
-
-              spinning =
-                false;
-
-              spinButton.disabled =
-                false;
-
-            },
-            400
-          );
-
-        }
-
-      }
-
+    if (progress < 1) {
 
       requestAnimationFrame(
         animate
       );
 
-    }
+    } else {
 
-
-    function normalizeAngle(
-      angle
-    ) {
-
-      angle =
-        angle %
+      currentRotation =
+        finalRotation %
         (Math.PI * 2);
 
-
-      if (angle < 0) {
-
-        angle +=
-          Math.PI * 2;
-
-      }
+      drawWheel();
 
 
-      return angle;
+      setTimeout(
+        function() {
 
-    }
+          showResult(
+            prizes[winningIndex]
+          );
 
+          spinning =
+            false;
 
-    /* =========================
-       RESULT
-       ========================= */
+          spinButton.disabled =
+            false;
 
-    function showResult(
-      prize
-    ) {
-
-      prizeText.textContent =
-        prize.name;
-
-      resultEmoji.textContent =
-        prize.emoji;
-
-
-      if (prize.lose) {
-
-        resultTitle.textContent =
-          "Not This Time, Traveler! 🍀";
-
-        prizeText.textContent =
-          "Maybe your next Egypt adventure will be your lucky one! 🇪🇬";
-
-      } else {
-
-        resultTitle.textContent =
-          "Congratulations! 🎉";
-
-      }
-
-
-      /* WHATSAPP */
-
-      const phone =
-        "201015033202";
-
-
-      const whatsappMessage =
-        prize.message +
-        "\n\nName: " +
-        userName +
-        "\nPhone: " +
-        userPhone;
-
-
-      const whatsappURL =
-        "https://wa.me/" +
-        phone +
-        "?text=" +
-        encodeURIComponent(
-          whatsappMessage
-        );
-
-
-      whatsappButton.href =
-        whatsappURL;
-
-
-      if (prize.lose) {
-
-        whatsappButton.style.display =
-          "none";
-
-      } else {
-
-        whatsappButton.style.display =
-          "inline-block";
-
-      }
-
-
-      resultOverlay.classList.add(
-        "show"
+        },
+        400
       );
 
     }
 
+  }
 
-    function closeResult() {
 
-      resultOverlay.classList.remove(
-        "show"
+  requestAnimationFrame(
+    animate
+  );
+
+}
+
+
+function normalizeAngle(angle) {
+
+  angle =
+    angle %
+    (Math.PI * 2);
+
+
+  if (angle < 0) {
+
+    angle +=
+      Math.PI * 2;
+
+  }
+
+
+  return angle;
+
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+function showResult(prize) {
+
+  prizeText.textContent =
+    prize.name;
+
+  resultEmoji.textContent =
+    prize.emoji;
+
+
+  winnerIdElement.textContent =
+    "Winner ID: " +
+    winnerId;
+
+
+  if (prize.lose) {
+
+    resultTitle.textContent =
+      "Not This Time, Traveler! 🍀";
+
+    resultText.innerHTML =
+      "Maybe your next Egypt adventure will be your lucky one! 🇪🇬";
+
+    whatsappButton.style.display =
+      "none";
+
+    winnerIdElement.style.display =
+      "none";
+
+  } else {
+
+    resultTitle.textContent =
+      "Congratulations! 🎉";
+
+    resultText.innerHTML =
+      "Your prize has been registered successfully." +
+      "<br><br>" +
+      "Click below to verify your prize.";
+
+    whatsappButton.style.display =
+      "inline-block";
+
+    winnerIdElement.style.display =
+      "block";
+
+
+    /*
+      Create verification link.
+
+      Everything needed is encoded
+      inside the URL.
+    */
+
+    const verificationData = {
+
+      id: winnerId,
+
+      name: userName,
+
+      prize: prize.name
+
+    };
+
+
+    const encodedData =
+      btoa(
+        unescape(
+          encodeURIComponent(
+            JSON.stringify(
+              verificationData
+            )
+          )
+        )
       );
 
-    }
 
-  </script>
+    const verificationURL =
+      window.location.origin +
+      window.location.pathname +
+      "?verify=" +
+      encodeURIComponent(
+        encodedData
+      );
+
+
+    /*
+      WhatsApp
+    */
+
+    const whatsappPhone =
+      "201015033202";
+
+
+    const whatsappMessage =
+      "🎉 Congratulations!" +
+      "\n\n" +
+      "You have won:" +
+      "\n" +
+      prize.name +
+      "\n\n" +
+      "Winner ID: " +
+      winnerId +
+      "\n\n" +
+      "Verify your prize here:" +
+      "\n" +
+      verificationURL;
+
+
+    const whatsappURL =
+      "https://wa.me/" +
+      whatsappPhone +
+      "?text=" +
+      encodeURIComponent(
+        whatsappMessage
+      );
+
+
+    whatsappButton.href =
+      whatsappURL;
+
+  }
+
+
+  resultOverlay.classList.add(
+    "show"
+  );
+
+}
+
+
+function closeResult() {
+
+  resultOverlay.classList.remove(
+    "show"
+  );
+
+}
+
+
+/* =========================
+   VERIFY PAGE
+========================= */
+
+function checkVerification() {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const encoded =
+    params.get("verify");
+
+
+  if (!encoded)
+    return;
+
+
+  try {
+
+    const decoded =
+      decodeURIComponent(
+        escape(
+          atob(encoded)
+        )
+      );
+
+
+    const data =
+      JSON.parse(
+        decoded
+      );
+
+
+    document.getElementById(
+      "gameSection"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "verifySection"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "verifyPrize"
+    ).textContent =
+      data.prize;
+
+
+    document.getElementById(
+      "verifyId"
+    ).textContent =
+      "Winner ID: " +
+      data.id;
+
+
+    document.getElementById(
+      "verifyMessage"
+    ).innerHTML =
+      "Congratulations, " +
+      escapeHTML(data.name) +
+      "! 🎉" +
+      "<br><br>" +
+      "This prize verification link was generated by the Egypt Lucky Spin website.";
+
+  } catch (error) {
+
+    document.getElementById(
+      "gameSection"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "verifySection"
+    ).style.display =
+      "block";
+
+
+    document.getElementById(
+      "verifyIcon"
+    ).textContent =
+      "❌";
+
+
+    document.getElementById(
+      "verifyTitle"
+    ).textContent =
+      "Invalid Verification";
+
+
+    document.getElementById(
+      "verifyMessage"
+    ).textContent =
+      "This verification link is invalid or incomplete.";
+
+
+    document.getElementById(
+      "verifyPrize"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "verifyId"
+    ).style.display =
+      "none";
+
+  }
+
+}
+
+
+function escapeHTML(text) {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    text;
+
+  return div.innerHTML;
+
+}
+
+
+/* CHECK URL */
+
+checkVerification();
+
+</script>
 
 </body>
 </html>
+```
