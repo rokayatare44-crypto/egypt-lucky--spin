@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Egypt Lucky Spin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f3eb;
+      color: #263238;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 15px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 850px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #9b6b32;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 52px);
+      line-height: 1.05;
+      margin-bottom: 12px;
+      color: #263238;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      line-height: 1.5;
+      max-width: 560px;
+      margin: 0 auto 25px;
+      color: #5e666b;
+    }
+
+    .wheel-area {
+      position: relative;
+      width: min(88vw, 570px);
+      aspect-ratio: 1;
+      margin: 0 auto 25px;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 15px 25px rgba(0,0,0,0.14));
+    }
+
+    .pointer {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 35px solid #263238;
+      z-index: 5;
+      filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
+    }
+
+    .spin-button {
+      border: none;
+      background: #263238;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      padding: 16px 38px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px rgba(38,50,56,0.22);
+    }
+
+    .spin-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .spin-button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    /* Result popup */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20,25,27,0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 20;
+    }
+
+    .overlay.show {
+      display: flex;
+    }
+
+    .result-card {
+      width: 100%;
+      max-width: 470px;
+      background: #fffdf9;
+      border-radius: 24px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      animation: pop 0.35s ease;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .result-emoji {
+      font-size: 52px;
+      margin-bottom: 10px;
+    }
+
+    .result-card h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: #263238;
+    }
+
+    .prize {
+      font-size: 22px;
+      font-weight: bold;
+      color: #9b6b32;
+      margin: 15px 0;
+      line-height: 1.3;
+    }
+
+    .result-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #5e666b;
+      margin-bottom: 22px;
+    }
+
+    .whatsapp-button {
+      display: inline-block;
+      text-decoration: none;
+      background: #263238;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 40px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .close-button {
+      display: block;
+      margin: 5px auto 0;
+      border: none;
+      background: transparent;
+      color: #777;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding-top: 35px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .wheel-area {
+        width: min(92vw, 500px);
+      }
+
+      .result-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <div class="eyebrow">🇪🇬 Your Egypt Adventure</div>
+
+    <h1>Spin to Win Your Egypt Surprise! 🎁</h1>
+
+    <p class="subtitle">
+      Spin the wheel and discover your special reward for your next Egypt trip.
+    </p>
+
+    <div class="wheel-area">
+      <div class="pointer"></div>
+      <canvas id="wheel" width="600" height="600"></canvas>
+    </div>
+
+    <button class="spin-button" id="spinButton">
+      SPIN THE WHEEL 🎡
+    </button>
+
+    <p class="note">
+      Every prize is redeemable with your next Egypt tour booking.
+    </p>
+
+  </main>
+
+
+  <!-- RESULT POPUP -->
+
+  <div class="overlay" id="resultOverlay">
+
+    <div class="result-card">
+
+      <div class="result-emoji" id="resultEmoji">🎉</div>
+
+      <h2 id="resultTitle">Congratulations!</h2>
+
+      <div class="prize" id="prizeText"></div>
+
+      <p class="result-text">
+        You’ve unlocked a special gift for your next Egypt trip! 🇪🇬
+        <br><br>
+        Send us a screenshot of your result to claim your prize.
+      </p>
+
+      <a
+        id="whatsappButton"
+        class="whatsapp-button"
+        href="#"
+        target="_blank"
+      >
+        📲 CLAIM YOUR PRIZE
+      </a>
+
+      <button class="close-button" onclick="closeResult()">
+        Close
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       PRIZES
+       ========================= */
+
+    const prizes = [
+      {
+        name: "5% OFF Your Next Egypt Trip",
+        emoji: "🎉",
+        color: "#d9a441",
+        message: "Hi! I just won 5% OFF my next Egypt trip from the Egypt Lucky Spin! 🎉"
+      },
+
+      {
+        name: "FREE Egyptian Lunch",
+        emoji: "🍽️",
+        color: "#c96f4a",
+        message: "Hi! I just won a FREE Egyptian Lunch from the Egypt Lucky Spin! 🍽️"
+      },
+
+      {
+        name: "FREE Memphis Ticket",
+        emoji: "🏛️",
+        color: "#4d7180",
+        message: "Hi! I just won a FREE Memphis Ticket from the Egypt Lucky Spin! 🏛️"
+      },
+
+      {
+        name: "FREE Camel Ride",
+        emoji: "🐪",
+        color: "#c49a6c",
+        message: "Hi! I just won a FREE Camel Ride from the Egypt Lucky Spin! 🐪"
+      },
+
+      {
+        name: "FREE Egyptian Souvenir",
+        emoji: "🎁",
+        color: "#5c9a91",
+        message: "Hi! I just won a FREE Egyptian Souvenir from the Egypt Lucky Spin! 🎁"
+      },
+
+      {
+        name: "FREE Egyptian Tea & Coffee",
+        emoji: "☕",
+        color: "#8b6f5a",
+        message: "Hi! I just won a FREE Egyptian Tea & Coffee Experience from the Egypt Lucky Spin! ☕"
+      },
+
+      {
+        name: "Not This Time, Traveler! 🍀",
+        emoji: "🍀",
+        color: "#59616a",
+        lose: true,
+        message: "Hi! I just played the Egypt Lucky Spin!"
+      }
+    ];
+
+
+    /* =========================
+       WHEEL SETUP
+       ========================= */
+
+    const canvas = document.getElementById("wheel");
+    const ctx = canvas.getContext("2d");
+
+    const spinButton = document.getElementById("spinButton");
+
+    const resultOverlay = document.getElementById("resultOverlay");
+    const prizeText = document.getElementById("prizeText");
+    const resultEmoji = document.getElementById("resultEmoji");
+    const resultTitle = document.getElementById("resultTitle");
+    const whatsappButton = document.getElementById("whatsappButton");
+
+    const center = canvas.width / 2;
+    const radius = center - 8;
+
+    let currentRotation = 0;
+    let spinning = false;
+
+
+    /* =========================
+       DRAW WHEEL
+       ========================= */
+
+    function drawWheel() {
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const segmentAngle = (Math.PI * 2) / prizes.length;
+
+      prizes.forEach((prize, index) => {
+
+        const startAngle =
+          currentRotation +
+          index * segmentAngle -
+          Math.PI / 2;
+
+        const endAngle =
+          startAngle + segmentAngle;
+
+        /* Segment */
+
+        ctx.beginPath();
+
+        ctx.moveTo(center, center);
+
+        ctx.arc(
+          center,
+          center,
+          radius,
+          startAngle,
+          endAngle
+        );
+
+        ctx.closePath();
+
+        ctx.fillStyle = prize.color;
+        ctx.fill();
+
+        ctx.strokeStyle = "#fffdf9";
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+
+        /* Text */
+
+        ctx.save();
+
+        ctx.translate(center, center);
+
+        ctx.rotate(
+          startAngle + segmentAngle / 2
+        );
+
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#ffffff";
+
+        ctx.font = "bold 18px Arial";
+
+        const words = prize.name.split(" ");
+
+        let line = "";
+        let lines = [];
+
+        words.forEach(word => {
+
+          const testLine =
+            line.length
+              ? line + " " + word
+              : word;
+
+          if (ctx.measureText(testLine).width > 175) {
+            lines.push(line);
+            line = word;
+          } else {
+            line = testLine;
+          }
+
+        });
+
+        if (line) {
+          lines.push(line);
+        }
+
+        lines = lines.slice(0, 3);
+
+        lines.forEach((text, lineIndex) => {
+
+          ctx.fillText(
+            text,
+            radius - 22,
+            (lineIndex - (lines.length - 1) / 2) * 22
+          );
+
+        });
+
+        ctx.restore();
+
+      });
+
+
+      /* Center circle */
+
+      ctx.beginPath();
+
+      ctx.arc(
+        center,
+        center,
+        42,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fillStyle = "#263238";
+      ctx.fill();
+
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 5;
+      ctx.stroke();
+
+      ctx.font = "25px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      ctx.fillText(
+        "🇪🇬",
+        center,
+        center
+      );
+    }
+
+
+    drawWheel();
+
+
+    /* =========================
+       SPIN
+       ========================= */
+
+    spinButton.addEventListener("click", spin);
+
+
+    function spin() {
+
+      if (spinning) return;
+
+      spinning = true;
+      spinButton.disabled = true;
+
+      /*
+       * For now the prizes have equal probability.
+       * We can change this later.
+       */
+
+      const winningIndex =
+        Math.floor(Math.random() * prizes.length);
+
+      const segmentAngle =
+        (Math.PI * 2) / prizes.length;
+
+      /*
+       * Put the selected segment
+       * under the top pointer.
+       */
+
+      const targetAngle =
+        (Math.PI * 2) -
+        (
+          winningIndex * segmentAngle +
+          segmentAngle / 2
+        );
+
+      const extraSpins =
+        6 + Math.floor(Math.random() * 3);
+
+      const startRotation = currentRotation;
+
+      const finalRotation =
+        startRotation +
+        extraSpins * Math.PI * 2 +
+        normalizeAngle(targetAngle - startRotation);
+
+
+      const duration = 5000;
+
+      const startTime = performance.now();
+
+
+      function animate(now) {
+
+        const elapsed =
+          now - startTime;
+
+        const progress =
+          Math.min(elapsed / duration, 1);
+
+        /*
+         * Smooth ease-out
+         */
+
+        const eased =
+          1 - Math.pow(1 - progress, 4);
+
+        currentRotation =
+          startRotation +
+          (finalRotation - startRotation) *
+          eased;
+
+        drawWheel();
+
+        if (progress < 1) {
+
+          requestAnimationFrame(animate);
+
+        } else {
+
+          currentRotation =
+            finalRotation % (Math.PI * 2);
+
+          drawWheel();
+
+          setTimeout(() => {
+
+            showResult(prizes[winningIndex]);
+
+            spinning = false;
+            spinButton.disabled = false;
+
+          }, 400);
+
+        }
+
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+
+    function normalizeAngle(angle) {
+
+      angle = angle % (Math.PI * 2);
+
+      if (angle < 0) {
+        angle += Math.PI * 2;
+      }
+
+      return angle;
+    }
+
+
+    /* =========================
+       RESULT
+       ========================= */
+
+    function showResult(prize) {
+
+      prizeText.textContent =
+        prize.name;
+
+      resultEmoji.textContent =
+        prize.emoji;
+
+      if (prize.lose) {
+
+        resultTitle.textContent =
+          "Not This Time, Traveler! 🍀";
+
+        prizeText.textContent =
+          "Maybe your next Egypt adventure will be your lucky one! 🇪🇬";
+
+      } else {
+
+        resultTitle.textContent =
+          "Congratulations! 🎉";
+
+      }
+
+
+      /*
+       * WhatsApp number
+       * WITHOUT + or spaces
+       */
+
+      const phone =
+        "201015033202";
+
+      const whatsappURL =
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        encodeURIComponent(prize.message);
+
+
+      whatsappButton.href =
+        whatsappURL;
+
+
+      if (prize.lose) {
+
+        whatsappButton.style.display =
+          "none";
+
+      } else {
+
+        whatsappButton.style.display =
+          "inline-block";
+
+      }
+
+
+      resultOverlay.classList.add("show");
+    }
+
+
+    function closeResult() {
+
+      resultOverlay.classList.remove("show");
+
+    }
+
+  </script>
+
+</body>
+</html>
